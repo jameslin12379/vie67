@@ -1,0 +1,260 @@
+<% include ../partials/header %>
+
+<div id="et-main-area">
+    <div id="main-content">
+        <article id="post-209034" class="post-209034 page type-page status-publish hentry">
+            <div class="entry-content">
+                <div id="et-boc" class="et-boc">
+                    <div class="et_builder_inner_content et_pb_gutters3">
+                        <div class="et_pb_section et_pb_section_1 et_section_specialty">
+                            <div class="et_pb_row">
+                                <div class="et_pb_column et_pb_column_1_3 et_pb_column_3    et_pb_css_mix_blend_mode_passthrough et_pb_column_single w-100 ptb-0">
+                                    <% if (alert.length > 0) { %>
+                                    <div class="et_pb_newsletter_result et_pb_newsletter_error show text-center mb-1 fs-18">
+                                        <%= alert %>
+                                    </div>
+                                    <% } %>
+
+                                    <div class="et_pb_module et_pb_blurb et_pb_blurb_2 et_pb_bg_layout_light  et_pb_text_align_left  et_pb_blurb_position_left box-shadow-none" style="">
+                                        <div class="et_pb_blurb_content">
+                                            <div class="et_pb_blurb_container">
+                                                <a href="/posts/<%= results[0][0].id %>"><h4 class="et_pb_module_header"><%= results[0][0].name %></h4></a>
+
+                                                <div class="et_pb_blurb_description">
+                                                    <p><%= results[0][0].description %></p>
+                                                    <img class=" "src="<%= results[0][0].imageurl %>">
+                                                    <p><strong><%= moment(results[0][0].datecreated).format('LLL') %></strong></p>
+                                                    <div class="flex">
+                                                        <a class="brown mr-1" href="/users/<%= results[0][0].userid %>"><p><%= results[0][0].username %></p></a>
+                                                        <a class="brown mr-1" href="/topics/<%= results[0][0].topicid %>"><p><%= results[0][0].topicname %></p></a>
+                                                        <span class=" brown mr-1"><p><span id="commentscount"><%= results[2][0].commentscount %></span> Comments</p></span>
+                                                        <span class=" brown mr-1"><p><span id="upvotescount"><%= results[3][0].upvotescount %></span> Likes</p></span>
+                                                        <% if (req.isAuthenticated()) { %>
+                                                            <button id="upvoteunupvote" class="brown fs-100p bd-none mr-1">
+                                                                <% if (result[0].status === 0) { %>
+                                                                Like
+                                                                <% } else { %>
+                                                                Liked
+                                                                <% } %>
+                                                            </button>
+                                                        <% } %>
+                                                        <% if (req.user === undefined) { %>
+                                                        <% } else if (req.user.id !== results[0][0].userid) { %>
+                                                        <% } else { %>
+                                                            <a class="brown mr-1" href="/posts/<%= results[0][0].id %>/edit">Edit</a>
+                                                                        <form action="/posts/<%= results[0][0].id %>?_method=DELETE" method="post">
+                                                                            <button type="submit" class="brown fs-100p bd-none">Delete</button>
+                                                                        </form>
+                                                        <% } %>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <% if (req.isAuthenticated()) { %>
+                                    <div class="et_pb_module et_pb_blurb et_pb_blurb_2 et_pb_bg_layout_light  et_pb_text_align_left  et_pb_blurb_position_left mb-30 box-shadow-none" style="">
+                                        <div class="et_pb_blurb_content">
+
+                                            <div class="et_pb_blurb_container displayb">
+                                        <form action="/comments" method="post" id="commentform">
+                                            <div id="emptyerror" class="et_pb_newsletter_result et_pb_newsletter_error show text-center mb-1 fs-18 red hidden commentformerrors">
+                                                Empty description
+                                            </div>
+                                            <div id="lengtherror" class="et_pb_newsletter_result et_pb_newsletter_error show text-center mb-1 fs-18 red hidden commentformerrors">
+                                                Description must be between 5-300 characters.
+                                            </div>
+                                        <div class="et_pb_newsletter_fields">
+                                            <p class="et_pb_newsletter_field et_pb_contact_field_last">
+                                                <textarea id="commentformtextarea" class="input width-100p pd-20 fs-20" placeholder="Description" name="description" rows="5" required></textarea>
+                                            </p>
+                                            <button class="submit-button floatr" type="submit" data-icon="">Comment</button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                        </div>
+                                    </div>
+                                    <% } %>
+
+
+
+                                    <div id="container">
+                                            <% for(var i=0; i < results[1].length; i++) { %>
+                                            <div class="et_pb_module et_pb_blurb et_pb_blurb_2 et_pb_bg_layout_light  et_pb_text_align_left  et_pb_blurb_position_left mb-30 box-shadow-none container-item" style="">
+                                                <div class="et_pb_blurb_content">
+
+                                                    <div class="et_pb_blurb_container">
+                                                        <a href="/comments/<%= results[1][i].id %>"><h4 class="et_pb_module_header"><%= results[1][i].description %></h4></a>
+                                                        <div class="et_pb_blurb_description">
+
+                                                            <a href="/users/<%= results[1][i].userid %>"><h4 class="et_pb_module_header"><%= results[1][i].username %></h4></a>
+                                                            <p><strong><%= moment(results[1][i].datecreated).format('LLL') %></strong></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <% } %>
+                                    </div>
+
+                                        <div id="loadMore">
+                                        </div>
+
+
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div> </div>
+    </article>
+</div>
+
+</div>
+
+
+<script src="/javascripts/postloadmorecomments.js"></script>
+
+
+<% if (req.isAuthenticated()) { %>
+<script src="/javascripts/postcreatecomment.js"></script>
+<script src="/javascripts/postupvoteunupvote.js"></script>
+
+<% } %>
+
+
+<% include ../partials/footer %>
+
+
+<div class="et_pb_module et_pb_blurb et_pb_blurb_2 et_pb_bg_layout_light  et_pb_text_align_left  et_pb_blurb_position_left mb-30" style="">
+    <div class="et_pb_blurb_content">
+
+        <div class="et_pb_blurb_container displayb">
+            <form action="/comments" method="post" id="commentform">
+                <div id="emptyerror" class="et_pb_newsletter_result et_pb_newsletter_error show text-center mb-1 fs-18 red hidden commentformerrors">
+                    Empty description
+                </div>
+                <div id="lengtherror" class="et_pb_newsletter_result et_pb_newsletter_error show text-center mb-1 fs-18 red hidden commentformerrors">
+                    Description must be between 5-300 characters.
+                </div>
+                <div class="et_pb_newsletter_fields">
+                    <p class="et_pb_newsletter_field et_pb_contact_field_last">
+                        <textarea id="commentformtextarea" class="input width-100p pd-20 fs-20" placeholder="Description" name="description" rows="5" required></textarea>
+                    </p>
+                    <button id="explore" class="et_pb_button et_pb_custom_button_icon et_pb_button_0 et_animated et_hover_enabled et_pb_bg_layout_light pdlr-1 fs-12 floatr" data-icon="&#x45;" type="submit">Comment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!--<div class="et_pb_column et_pb_column_2_3 et_pb_column_1    et_pb_css_mix_blend_mode_passthrough et_pb_blurb_5 et_pb_blurb">-->
+
+<!--<div id="et_pb_contact_form_0" class="et_pb_with_border et_pb_module et_pb_contact_form_0 et_pb_contact_form_container clearfix">-->
+<!--<div class="et_pb_contact">-->
+<!--<form class="et_pb_contact_form clearfix" action="/comments" method="post" id="commentform">-->
+<!--<div id="emptyerror" class="et_pb_newsletter_result et_pb_newsletter_error show text-center mb-1 fs-18 red hidden commentformerrors">-->
+<!--Empty description-->
+<!--</div>-->
+<!--<div id="lengtherror" class="et_pb_newsletter_result et_pb_newsletter_error show text-center mb-1 fs-18 red hidden commentformerrors">-->
+<!--Description must be between 5-300 characters.-->
+<!--</div>-->
+<!--&lt;!&ndash;<p class="et_pb_contact_field et_pb_contact_field_0 et_pb_contact_field_half" data-id="first" data-type="input">&ndash;&gt;-->
+<!--&lt;!&ndash;<label for="et_pb_contact_first_1" class="et_pb_contact_form_label">First Name</label>&ndash;&gt;-->
+<!--&lt;!&ndash;<input type="text" id="et_pb_contact_first_1" class="input" value="" name="et_pb_contact_first_1" data-required_mark="required" data-field_type="input" data-original_id="first" placeholder="First Name">&ndash;&gt;-->
+<!--&lt;!&ndash;</p><p class="et_pb_contact_field et_pb_contact_field_1 et_pb_contact_field_half et_pb_contact_field_last" data-id="last" data-type="input">&ndash;&gt;-->
+<!--&lt;!&ndash;<label for="et_pb_contact_last_1" class="et_pb_contact_form_label">Last Name</label>&ndash;&gt;-->
+<!--&lt;!&ndash;<input type="text" id="et_pb_contact_last_1" class="input" value="" name="et_pb_contact_last_1" data-required_mark="required" data-field_type="input" data-original_id="last" placeholder="Last Name">&ndash;&gt;-->
+<!--&lt;!&ndash;</p><p class="et_pb_contact_field et_pb_contact_field_2 et_pb_contact_field_half" data-id="email" data-type="email">&ndash;&gt;-->
+<!--&lt;!&ndash;<label for="et_pb_contact_email_1" class="et_pb_contact_form_label">Email Address</label>&ndash;&gt;-->
+<!--&lt;!&ndash;<input type="text" id="et_pb_contact_email_1" class="input" value="" name="et_pb_contact_email_1" data-required_mark="required" data-field_type="email" data-original_id="email" placeholder="Email Address">&ndash;&gt;-->
+<!--&lt;!&ndash;</p><p class="et_pb_contact_field et_pb_contact_field_3 et_pb_contact_field_half et_pb_contact_field_last" data-id="phone" data-type="email">&ndash;&gt;-->
+<!--&lt;!&ndash;<label for="et_pb_contact_phone_1" class="et_pb_contact_form_label">Phone Number</label>&ndash;&gt;-->
+<!--&lt;!&ndash;<input type="text" id="et_pb_contact_phone_1" class="input" value="" name="et_pb_contact_phone_1" data-required_mark="required" data-field_type="email" data-original_id="phone" placeholder="Phone Number">&ndash;&gt;-->
+<!--&lt;!&ndash;</p>&ndash;&gt;-->
+<!--<p class="et_pb_contact_field et_pb_contact_field_4 et_pb_contact_field_last">-->
+<!--&lt;!&ndash;<label for="et_pb_contact_message_1" class="et_pb_contact_form_label">Message</label>&ndash;&gt;-->
+<!--<textarea id="commentformtextarea" class="et_pb_contact_message input"  placeholder="Description" name="description" required></textarea>-->
+<!--</p>-->
+<!--&lt;!&ndash;<input type="hidden" value="et_contact_proccess" name="et_pb_contactform_submit_0">&ndash;&gt;-->
+<!--&lt;!&ndash;<input type="text" value="" name="et_pb_contactform_validate_0" class="et_pb_contactform_validate_field" />&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="et_contact_bottom_container">&ndash;&gt;-->
+<!--&lt;!&ndash;<button type="submit" class="et_pb_contact_submit et_pb_button">Send Message</button>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--<button id="explore" class="et_pb_button et_pb_custom_button_icon et_pb_button_0 et_animated et_hover_enabled et_pb_bg_layout_light pdlr-1 fs-12 floatr" data-icon="&#x45;" type="submit">Comment</button>-->
+
+<!--&lt;!&ndash;<input type="hidden" id="_wpnonce-et-pb-contact-form-submitted" name="_wpnonce-et-pb-contact-form-submitted" value="10e1ebacec" /><input type="hidden" name="_wp_http_referer" value="/layouts/education/lms-contact-page/live-demo" />&ndash;&gt;-->
+<!--</form>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>
+
+
+           <div class="et_pb_module et_pb_blurb et_pb_blurb_5 et_animated et_pb_bg_layout_light  et_pb_text_align_center  et_pb_blurb_position_top">
+<div class="et_pb_blurb_content">
+<!--<div class="et_pb_main_blurb_image"><span class="et_pb_image_wrap"><img src="<%= results[0][0].imageurl %>" alt="" class="et-waypoint et_pb_animation_top" /></span></div>-->
+<div class="et_pb_blurb_container">
+<% if (alert.length > 0) { %>
+<div class="et_pb_newsletter_result et_pb_newsletter_error show text-center mb-1 fs-18 colorgray">
+<%= alert %>
+</div>
+<% } %>
+<h4 class="et_pb_module_header">
+<% if (results[0][0].posttype === 1) { %>
+<a href="/posts/<%= results[0][0].id %>"><%= results[0][0].name %></a>
+<% } else { %>
+<a href="/posts/<%= results[0][0].id %>">/posts/<%= results[0][0].id %></a>
+<% } %>
+</h4>
+<div class="et_pb_blurb_description">
+<% if (results[0][0].posttype === 1) { %>
+<p><%= results[0][0].description %></p>
+<% } else if (results[0][0].posttype === 2) { %>
+<img src="<%= results[0][0].imageurl %>">
+<% } else { %>
+<video controls controlsList="nodownload" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+<source src="<%= results[0][0].videourl %>" type="video/mp4">
+</video>
+<% } %>
+<p class="pb-1"><strong><%= moment(results[0][0].datecreated).format('LLL') %></strong></p>
+<div id="item-other-paddingnone">
+<p><strong><a class="brown" href="/users/<%= results[0][0].userid %>"><%= results[0][0].username %></a></strong></p>
+<p><strong><a class="brown" href="/topics/<%= results[0][0].topicid %>"><%= results[0][0].topicname %></a></strong></p>
+<p><strong><span class="brown"><span id="commentscount"><%= results[2][0].commentscount %></span> Comments</span></strong></p>
+<p><strong><span class="brown"><span id="likescount"><%= results[3][0].likescount %></span> Likes</span></strong></p>
+<% if (req.isAuthenticated()) { %>
+<p><strong><button id="likeunlike" class="brown fs-100p bd-none fwbold">
+<% if (result[0].status === 0) { %>
+Like
+<% } else { %>
+Liked
+<% } %>
+</button></strong></p>
+<% } %>
+<% if (req.user === undefined) { %>
+<% } else if (req.user.id !== results[0][0].userid) { %>
+<% } else { %>
+<% if (results[0][0].posttype === 1) { %>
+<p class="pb-1"><strong><a class="brown" href="/posts/<%= results[0][0].id %>/edit">Edit</a></strong></p>
+<% } %>
+<form action="/posts/<%= results[0][0].id %>?_method=DELETE" method="post">
+<button type="submit" class="brown fs-100p bd-none fwbold">Delete</button>
+</form>
+<% } %>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="et_pb_button_module_wrapper et_pb_button_2_wrapper et_pb_button_alignment_center et_pb_module ">
+<a class="et_pb_button et_pb_custom_button_icon et_pb_button_2 et_animated et_hover_enabled et_pb_bg_layout_light" href="#" data-icon="&#x45;">Full Profile</a>
+</div>

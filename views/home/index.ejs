@@ -1,0 +1,40 @@
+<% include ../partials/header %>
+
+<% if (alert.length > 0) { %>
+<div class="alert alert-success success-alert " role="alert">
+    <span class="mr-15"><%= alert %></span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<% } %>
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('vie67/img/shawn-xu-1351078-unsplash.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1 class="mb-15">Vie67</h1>
+                    <span class="subheading mb-15"><% if (!req.isAuthenticated()) { %>Write something<% } else { %>Follow Topics<% } %></span>
+                    <div class="clearfix flex jc-center">
+                        <a class="btn btn-primary float-right" href="/topics">Explore &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<% include ../partials/footer %>
+
+
+
+
+
+
+
+
+
+

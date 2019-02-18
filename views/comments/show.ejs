@@ -1,0 +1,33 @@
+<% include ../partials/header %>
+
+<!-- Page Header -->
+<header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading pt-150">
+                    <div class="flex">
+                        <div class="mr-15">
+                            <a href="/users/<%= results[0].userid %>"><img src="<%= results[0].imageurl %>" alt="" class="width-60 height-60 border-radius" /></a>
+                        </div>
+                        <div class="text-left">
+                            <div><a href="/users/<%= results[0].userid %>" class="bold white fs-16"><%= results[0].username %></a></div>
+                            <div><a href="/comments/<%= results[0].id %>" class="white fs-16"><%= results[0].description %></a></div>
+                            <div class="white fs-16 mb-15"><%= moment(results[0].datecreated).format('LLL') %></div>
+                            <% if (req.user === undefined) { %>
+                            <% } else if (req.user.id !== results[0].userid) { %>
+                            <% } else { %>
+                            <form action="/comments/<%= results[0].id %>?_method=DELETE" method="post">
+                                <button type="submit" class="btn btn-primary pd-6-12">Delete</button>
+                            </form>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<% include ../partials/footer %>

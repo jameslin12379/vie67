@@ -1,0 +1,116 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Company</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.1/examples/cover/cover.css" rel="stylesheet">
+</head>
+
+<body class="text-center">
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="masthead mb-auto">
+        <div class="inner">
+            <a href="/"><h3 class="masthead-brand">Imagz</h3></a>
+            <nav class="nav nav-masthead justify-content-center">
+                <!--<a class="nav-link active" href="#">Home</a>-->
+                <a class="nav-link" href="/users/new">Sign up</a>
+                <a class="nav-link" href="/login">Log in</a>
+            </nav>
+        </div>
+    </header>
+
+    <main role="main" class="inner cover">
+        <h1 class="cover-heading">Imagz</h1>
+        <p class="lead">Upload something today.</p>
+        <p class="lead">
+            <a href="/topics" class="btn btn-lg btn-secondary">Explore</a>
+        </p>
+    </main>
+
+    <footer class="mastfoot mt-auto">
+        <div class="inner">
+            <!--<p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>-->
+            <p>&copy; 2018 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+        </div>
+    </footer>
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+<div id="et-main-area">
+    <div id="main-content">
+        <article id="post-209028" class="post-209028 page type-page status-publish hentry">
+            <div class="entry-content">
+                <div id="et-boc" class="et-boc">
+                    <div class="et_builder_inner_content et_pb_gutters3">
+                        <div class="et_pb_section et_pb_section_2 et_section_regular pb-150">
+                            <div class="et_pb_row et_pb_row_6 pt-none">
+                                <div class="et_pb_column et_pb_column_1_2 et_pb_column_12    et_pb_css_mix_blend_mode_passthrough ptb-50">
+                                    <div class="et_pb_module et_pb_signup_0 et_hover_enabled et_pb_newsletter_layout_left_right et_pb_newsletter et_pb_subscribe clearfix et_pb_bg_layout_dark  et_pb_text_align_left et_pb_no_bg">
+                                        <div class="et_pb_newsletter_form text-center">
+                                            <% if (alert.length > 0) { %>
+                                            <div class="et_pb_newsletter_result et_pb_newsletter_error show text-center mb-1 fs-18">
+                                                <%= alert %>
+                                            </div>
+                                            <% } %>
+                                            <!--<div class="et_pb_column et_pb_column_1_2 et_pb_column_0    et_pb_css_mix_blend_mode_passthrough" id="indexleft">-->
+                                            <% if (!req.isAuthenticated()) { %>
+
+                                            <div class="et_pb_module et_pb_text et_pb_text_0 et_pb_bg_layout_dark mb-none">
+                                                <div class="et_pb_text_inner">
+                                                    <h1 class="fs-80">GIF</h1>
+                                                </div>
+                                            </div> <div class="et_pb_module et_pb_text et_pb_text_1 et_pb_bg_layout_light">
+                                                <div class="et_pb_text_inner">
+                                                    <p class="fs-20">Upload something.</p>
+                                                </div>
+
+                                            </div>
+                                            <% } else { %>
+                                            <!--<div class="et_pb_module et_pb_text et_pb_text_0 et_pb_bg_layout_dark mb-none">-->
+                                            <!--<div class="et_pb_text_inner">-->
+                                            <!--<h1 class="fs-80">FOLLOW TOPICS</h1>-->
+                                            <!--</div>-->
+                                            <!--</div> -->
+                                            <div class="et_pb_module et_pb_text et_pb_text_1 et_pb_bg_layout_light">
+                                                <div class="et_pb_text_inner">
+                                                    <p class="fs-20">Follow Topics.</p>
+                                                </div>
+
+                                            </div>
+                                            <% } %>
+                                            <div class="et_pb_button_module_wrapper et_pb_button_0_wrapper et_pb_button_alignment_ et_pb_module ">
+                                                <a class="submit-button fs-12" href="/topics">Explore</a>
+                                            </div>
+                                            <!--</div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  </div>
+                </div> </div>
+        </article>
+    </div>
+
+</div>

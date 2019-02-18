@@ -1,0 +1,40 @@
+<% include ../partials/header %>
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('vie67/img/shawn-xu-1351078-unsplash.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1 class="mb-15">Feed</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div id="container" class="col-lg-8 col-md-10 mx-auto">
+            <% for(var i=0; i < results[0].length; i++) { %>
+            <div class="post-preview list-item mb-50">
+                <a href="/topics/<%= results[0][i].id %>" class="mr-15"><img src="<%= results[0][i].imageurl %>" alt="" class="width-60 height-60 border-radius" /></a>
+                <a href="/topics/<%= results[0][i].id %>" class="bold fs-16"><%= results[0][i].name %></a>
+            </div>
+            <% } %>
+            <% for(var i=0; i < results[1].length; i++) { %>
+            <div class="post-preview list-item mb-50">
+                <a href="/users/<%= results[1][i].id %>" class="mr-15"><img src="<%= results[1][i].imageurl %>" alt="" class="width-60 height-60 border-radius" /></a>
+                <a href="/users/<%= results[1][i].id %>" class="bold fs-16"><%= results[1][i].username %></a>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>
+
+
+
+

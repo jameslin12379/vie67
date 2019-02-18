@@ -1,0 +1,38 @@
+<% include ../partials/header %>
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('vie67/img/faris-mohammed-1319833-unsplash.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1 class="mb-15">Explore</h1>
+                    <span class="subheading">Here are the topics</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div id="container" class="col-lg-8 col-md-10 mx-auto">
+            <% for(var i=0; i < results.length; i++) { %>
+            <div class="post-preview list-item mb-50">
+                <a href="/topics/<%= results[i].id %>" class="mr-15"><img src="<%= results[i].imageurl %>" alt="" class="width-60 height-60 border-radius" /></a>
+                <a href="/topics/<%= results[i].id %>" class="bold fs-16"><%= results[i].name %></a>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</div>
+<div id="loadMore">
+</div>
+
+<script src="/javascripts/loadmoretopics.js"></script>
+<% include ../partials/footer %>
+
+
+

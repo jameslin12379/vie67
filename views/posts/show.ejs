@@ -1,0 +1,135 @@
+<% include ../partials/header %>
+
+<% if (alert.length > 0) { %>
+<div class="alert alert-success success-alert " role="alert">
+    <span class="mr-15"><%= alert %></span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<% } %>
+
+<!-- Page Header -->
+<header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading pt-150">
+                    <div class="mb-15">
+                        <a href="/posts/<%= results[0][0].id %>">
+                            <video controls controlsList="nodownload" webkitallowfullscreen mozallowfullscreen allowfullscreen class="width-100p">
+                                <source src="<%= results[0][0].videourl %>" type="video/mp4">
+                            </video>
+                        </a>
+                    </div>
+                    <!--<div class="flex jc-center mb-15">-->
+                        <!--<a href="/topics/<%= results[0][0].id %>" class="mr-15 white fs-18"><span id="postscount"><%= results[2][0].postscount %></span> Posts</a>-->
+                        <!--<a href="/topics/<%= results[0][0].id %>/followers" class="white fs-18"><span id="followerscount"><%= results[3][0].followerscount %></span> Followers</a>-->
+                    <!--</div>-->
+                    <div class="flex mb-15">
+                        <div class="mr-15">
+                            <a href="/users/<%= results[0][0].userid %>"><img src="<%= results[0][0].userimageurl %>" alt="" class="width-60 height-60 border-radius" /></a>
+                        </div>
+                        <div class="text-left">
+                            <div>
+                                <a href="/users/<%= results[0][0].userid %>" class="bold fs-16 marginr-5 white"><%= results[0][0].username %></a>
+                                <a href="/topics/<%= results[0][0].topicid %>" class="bold fs-16 white"><%= results[0][0].topicname %></a>
+                            </div>
+                            <div class="fs-16"><%= moment(results[0][0].datecreated).format('LLL') %></div>
+                        </div>
+                    </div>
+                    <div class="flex ai-c mb-15">
+                        <div class="mr-15">
+                            <span class="fs-16"><span id="commentscount" class="commentscount"><%= results[2][0].commentscount %></span> Comments</span>
+                        </div>
+                        <div class="mr-15">
+                            <span class="fs-16"><%= results[0][0].views %> Views</span>
+                        </div>
+                        <div class="mr-15">
+                            <span class="fs-16"><span id="likescount"><%= results[3][0].likescount %></span> Likes</span>
+                        </div>
+                        <% if (req.isAuthenticated()) { %>
+                        <div class="mr-15">
+                            <i id="likeunlike" class="far fa-thumbs-up <% if (result[0].status === 0) { %>op-05<% } %>"></i></button>
+                        </div>
+                        <% } %>
+                    </div>
+                    <% if (req.user === undefined) { %>
+                    <% } else if (req.user.id !== results[0][0].userid) { %>
+                    <% } else { %>
+                    <div class="flex">
+                    <div>
+                        <form action="/posts/<%= results[0][0].id %>?_method=DELETE" method="post">
+                            <input type="hidden" name="url" value="<%= results[0][0].imageurl %>">
+                            <button type="submit" class="btn btn-primary pd-6-12">Delete</button>
+                        </form>
+                    </div>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<% if (req.isAuthenticated()) { %>
+<!-- Main Content -->
+<div class="container mb-50">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
+            <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
+            <!-- To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
+            <form name="sentMessage" action="/comments" method="post" id="commentform">
+                <div id="emptyerror" class="alert alert-danger mb-30 hidden commentformerrors" role="alert">
+                    Empty description.
+                </div>
+                <div id="lengtherror" class="alert alert-danger mb-30 hidden commentformerrors" role="alert">
+                    Description must be between 5-300 characters.
+                </div>
+                <div class="control-group mb-30">
+                    <div class="form-group floating-label-form-group controls">
+                        <textarea class="form-control" id="commentformtextarea" placeholder="Leave a comment" name="description" rows="3" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary pd-6-12" id="sendMessageButton">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<% } %>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <h4 class="mb-30"><span class="commentscount"><%= results[2][0].commentscount %></span> Comments</h4>
+            <div id="container">
+            <% for(var i=0; i < results[1].length; i++) { %>
+            <div class="flex mb-50 list-item">
+                <div class="mr-15">
+                    <a href="/users/<%= results[1][i].userid %>"><img src="<%= results[1][i].imageurl %>" alt="" class="width-60 height-60 border-radius" /></a>
+                </div>
+                <div>
+                    <div><a href="/users/<%= results[1][i].userid %>" class="bold fs-16"><%= results[1][i].username %></a></div>
+                    <div><a href="/comments/<%= results[1][i].id %>" class="fs-16"><%= results[1][i].description %></a></div>
+                    <div class="fs-16"><%= moment(results[1][i].datecreated).format('LLL') %></div>
+                </div>
+            </div>
+            <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="loadMore">
+</div>
+
+<script src="/javascripts/postloadmorecomments.js"></script>
+<% if (req.isAuthenticated()) { %>
+<script src="/javascripts/postcreatecomment.js"></script>
+<script src="/javascripts/postlikeunlike.js"></script>
+<% } %>
+<% include ../partials/footer %>

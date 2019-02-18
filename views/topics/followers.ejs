@@ -1,0 +1,40 @@
+<% include ../partials/header %>
+
+<!-- Page Header -->
+<header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading pt-150">
+                    <div class="flex jc-center mb-15"><img src="<%= results[0][0].imageurl %>" alt="" class="width-100 height-100 border-radius" /></div>
+                    <h2 class="mb-15"><%= results[0][0].name %></h2>
+                    <div class="flex jc-center mb-15">
+                        <a href="/topics/<%= results[0][0].id %>" class="mr-15 white fs-18"><span id="postscount"><%= results[2][0].postscount %></span> Posts</a>
+                        <a href="/topics/<%= results[0][0].id %>/followers" class="white fs-18"><span id="followerscount"><%= results[3][0].followerscount %></span> Followers</a>
+                    </div>
+                    <span class="subheading mb-15 fs-18"><%= results[0][0].description %></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div id="container" class="col-lg-8 col-md-10 mx-auto">
+            <% for(var i=0; i < results[1].length; i++) { %>
+            <div class="post-preview list-item mb-50">
+                <a href="/users/<%= results[1][i].id %>" class="mr-15"><img src="<%= results[1][i].imageurl %>" alt="" class="width-60 height-60 border-radius" /></a>
+                <a href="/users/<%= results[1][i].id %>" class="bold fs-16"><%= results[1][i].username %></a>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</div>
+<div id="loadMore">
+</div>
+
+<script src="/javascripts/topicloadmorefollowers.js"></script>
+<% include ../partials/footer %>

@@ -1,0 +1,56 @@
+<% include ../partials/header %>
+
+<!-- Page Header -->
+<header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <% if (alert.length > 0) { %>
+                <div class="alert alert-success" role="alert">
+                    <%= alert %>
+                </div>
+                <% } %>
+                <div class="site-heading pt-150">
+                    <div class="flex jc-center mb-15"><img src="<%= results[0][0].imageurl %>" alt="" class="width-100 height-100 border-radius" /></div>
+                    <h2 class="mb-15"><%= results[0][0].username %></h2>
+                    <div class="vert mb-15">
+                        <div class="mb-15"><a href="/users/<%= results[0][0].id %>" class="white fs-18"><%= results[2][0].postscount %> Posts</a></div>
+                        <div class="mb-15"><a href="/users/<%= results[0][0].id %>/following" class="white fs-18"><%= results[3][0].followingcount %> Following</a></div>
+                        <div class="mb-15"><a href="/users/<%= results[0][0].id %>/followers" class="white fs-18"><%= results[4][0].followerscount %> Followers</a></div>
+                        <div class="mb-15"><a href="/users/<%= results[0][0].id %>/topics" class="white fs-18"><%= results[5][0].topicscount %> Topics</a></div>
+                        <div class="mb-15"><a href="/users/<%= results[0][0].id %>/comments" class="white fs-18"><span id="commentscount"><%= results[6][0].commentscount %></span> Comments</a></div>
+                        <div><a href="/users/<%= results[0][0].id %>/likes" class="white fs-18"><%= results[7][0].likescount %> Likes</a></div>
+                    </div>
+                    <span class="subheading mb-15 fs-18">Joined <%= moment(results[0][0].datecreated).format('LLL') %></span>
+                    <span class="subheading mb-15 fs-18"><%= results[0][0].description %></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div id="container" class="col-lg-8 col-md-10 mx-auto">
+            <% for(var i=0; i < results[1].length; i++) { %>
+            <div class="flex mb-50 list-item">
+                <div class="mr-15">
+                    <a href="/users/<%= results[1][i].userid %>"><img src="<%= results[1][i].imageurl %>" alt="" class="width-60 height-60 border-radius" /></a>
+                </div>
+                <div>
+                    <div><a href="/users/<%= results[1][i].userid %>" class="bold fs-16"><%= results[1][i].username %></a></div>
+                    <div><a href="/comments/<%= results[1][i].id %>" class="fs-16"><%= results[1][i].description %></a></div>
+                    <div class="fs-16"><%= moment(results[1][i].datecreated).format('LLL') %></div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</div>
+<div id="loadMore">
+</div>
+
+<script src="/javascripts/userloadmorecomments.js"></script>
+<% include ../partials/footer %>
